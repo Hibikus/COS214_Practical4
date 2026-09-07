@@ -1,4 +1,6 @@
 #include "WorkGroup.h"
+#include "DepthFirstIterator.h"
+#include "ReadyShotIterator.h"
 #include <algorithm>
 
 WorkGroup::WorkGroup(std::string name)
