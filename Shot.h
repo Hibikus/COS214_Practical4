@@ -1,31 +1,38 @@
 #ifndef SHOT_H
 #define SHOT_H
 
-#include <iostream>
 #include "WorkUnit.h"
+#include <string>
 
-class Shot : public WorkUnit {
+class ShotState;
+
+class Shot : public WorkUnit
+{
 private:
-    std::string name;
-    int baseHours;
+    ShotState* currentState;
+    int estimatedHours;
 
 public:
-    Shot(const std::string& name, int baseHours)
-        : name(name), baseHours(baseHours) {}
+    Shot(std::string name, int estimatedHours);
+    virtual ~Shot();
 
-    ~Shot() {}
+    
+    virtual std::string getName();
+    virtual int getEstimatedHours();
+    virtual void process();
 
-    std::string getName() const override {
-        return name;
-    }
+    
+    virtual WorkUnitIterator* createIterator(IteratorType type);
 
-    int getEstimatedHours() const override {
-        return baseHours;
-    }
+    
+    void setState(ShotState* state);
+    std::string getStateName();
 
-    void process() override {
-        std::cout << "Filming shot: " << name << " (" << baseHours << "h)\n";
-    }
+    void schedule();
+    void startFilming();
+    void submitForReview();
+    void approve();
+    void requestReshoot();
 };
 
 #endif
