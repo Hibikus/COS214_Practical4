@@ -4,7 +4,10 @@
 #include <string>
 
 class WorkUnitIterator;
-enum class IteratorType;
+enum class IteratorType {
+    DepthFirst,
+    Ready
+};
 
 class WorkUnit
 {

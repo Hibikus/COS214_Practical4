@@ -8,6 +8,10 @@ WorkGroup::WorkGroup(std::string name)
 
 WorkGroup::~WorkGroup()
 {
+    for (WorkUnit* child : children)
+    {
+        delete child;
+    }
 }
 
 void WorkGroup::add(WorkUnit* unit)
@@ -52,6 +56,12 @@ void WorkGroup::process()
 
 WorkUnitIterator* WorkGroup::createIterator(IteratorType type)
 {
-    (void)type;
-    return nullptr; //currently just returns nullptr temporarily
+    switch (type)
+    {
+        case IteratorType::DepthFirst:
+            return new DepthFirstIterator(this);
+        case IteratorType::Ready:
+            return new ReadyShotIterator(this);
+    }
+    return nullptr;
 }
