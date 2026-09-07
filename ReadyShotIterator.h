@@ -10,6 +10,9 @@ class ReadyShotIterator: public WorkUnitIterator {
     private:
         std::vector<WorkUnit*> matches;
         std::size_t pos;
+
+        bool isReady(WorkUnit* node); //is scheduled? helper
+        void collect(WorkUnit* node); //recursive helper
     public:
         ReadyShotIterator(WorkUnit* root);
         void first() override;
