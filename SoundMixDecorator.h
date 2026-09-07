@@ -13,11 +13,11 @@ public:
     SoundMixDecorator(WorkUnit* wrapped, int mixHours, int stemCount)
         : WorkUnitDecorator(wrapped), mixHours(mixHours), stemCount(stemCount) {}
 
-    std::string getName() const override {
+    std::string getName() override {
         return wrapped->getName() + " [Sound]";
     }
 
-    int getEstimatedHours() const override {
+    int getEstimatedHours() override {
         return wrapped->getEstimatedHours() + mixHours;
     }
 

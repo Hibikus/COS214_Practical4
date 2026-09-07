@@ -13,11 +13,11 @@ public:
     ColorGradeDecorator(WorkUnit* wrapped, int gradeHours, const std::string& look)
         : WorkUnitDecorator(wrapped), gradeHours(gradeHours), look(look) {}
 
-    std::string getName() const override {
+    std::string getName() override {
         return wrapped->getName() + " [Grade]";
     }
 
-    int getEstimatedHours() const override {
+    int getEstimatedHours() override {
         return wrapped->getEstimatedHours() + gradeHours;
     }
 

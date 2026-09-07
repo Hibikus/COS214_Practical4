@@ -18,6 +18,7 @@ protected:
     virtual std::vector<WorkUnit*> getChildren() const { return {}; } //only seen by concrete iterators
     friend class DepthFirstIterator;
     friend class ReadyShotIterator;
+    friend class WorkUnitDecorator;
 public:
     WorkUnit(std::string name);
     virtual ~WorkUnit();
@@ -26,6 +27,15 @@ public:
     virtual int getEstimatedHours() = 0;
     virtual void process() = 0;
     virtual WorkUnitIterator* createIterator(IteratorType type) = 0;
+
+    virtual std::string getStateName() { return ""; }
+    virtual bool isGroup() const { return false; }
+
+    virtual void schedule() {}
+    virtual void startFilming() {}
+    virtual void submitForReview() {}
+    virtual void approve() {}
+    virtual void requestReshoot() {}
 };
 
 #endif

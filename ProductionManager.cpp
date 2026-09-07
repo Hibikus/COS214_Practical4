@@ -1,5 +1,4 @@
 #include "ProductionManager.h"
-#include "ProductionManager.h"
 #include "WorkGroup.h"
 #include "Shot.h"
 #include "VFXDecorator.h"
@@ -16,20 +15,28 @@ ProductionManager::~ProductionManager() {
 }
 
 void ProductionManager::buildProduction() {
+    if (root) {
+        delete root; // guard against leaking a previous build
+    }
+
     root = new WorkGroup("Main Production");
 
     WorkGroup* seq1 = new WorkGroup("Sequence 1");
     WorkGroup* scene1 = new WorkGroup("Scene 1");
 
-    Shot* shotA = new Shot("Shot 1A");
-    Shot* shotB = new Shot("Shot 1B");
+    Shot* shotA = new Shot("Shot 1A", 8);
+    Shot* shotB = new Shot("Shot 1B", 6);
 
-    WorkUnit* decoratedShotA = new SoundMixDecorator(new VFXDecorator(shotA, 10), 5);
+    WorkUnit* decoratedShotA = new SoundMixDecorator(new VFXDecorator(shotA, 10), 5, 8);
 
     scene1->add(decoratedShotA);
     scene1->add(shotB);
     seq1->add(scene1);
     root->add(seq1);
+}
+
+WorkGroup* ProductionManager::getRoot() const {
+    return root;
 }
 
 void ProductionManager::runDailyCallSheet() {

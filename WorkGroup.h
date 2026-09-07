@@ -22,6 +22,7 @@ public:
     virtual int getEstimatedHours();
     virtual void process();
     virtual WorkUnitIterator* createIterator(IteratorType type);
+    virtual bool isGroup() const { return true; }
 };
 
 #endif

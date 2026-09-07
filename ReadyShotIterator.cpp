@@ -1,16 +1,14 @@
 #include "ReadyShotIterator.h"
 #include "WorkUnit.h"
-#include "Shot.h"
 
 ReadyShotIterator::ReadyShotIterator(WorkUnit* root) : pos(0){
     collect(root);
 }
 
 bool ReadyShotIterator::isReady(WorkUnit* node) {
-    if (Shot* shot = dynamic_cast<Shot*>(node)) {
-        return shot->getStateName() == "Scheduled";
-    }
-    return false;
+    // getStateName() is "" for anything that isn't a Shot (or a decorated
+    // Shot), so this naturally excludes groups without needing a cast.
+    return node->getStateName() == "Scheduled";
 }
 
 void ReadyShotIterator::collect(WorkUnit* node) {

@@ -16,6 +16,7 @@ class ProductionManager {
         void runDailyCallSheet();
         void runFullBreakdown();
         void moveShot(WorkUnit* shot, WorkGroup* from, WorkGroup* to);
+        WorkGroup* getRoot() const;
 };
 
 #endif

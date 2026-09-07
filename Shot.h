@@ -28,11 +28,11 @@ public:
     void setState(ShotState* state);
     std::string getStateName();
 
-    void schedule();
-    void startFilming();
-    void submitForReview();
-    void approve();
-    void requestReshoot();
+    void schedule() override;
+    void startFilming() override;
+    void submitForReview() override;
+    void approve() override;
+    void requestReshoot() override;
 };
 
 #endif

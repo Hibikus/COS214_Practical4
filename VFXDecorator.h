@@ -12,11 +12,11 @@ public:
     VFXDecorator(WorkUnit* wrapped, int vfxHours)
         : WorkUnitDecorator(wrapped), vfxHours(vfxHours) {}
 
-    std::string getName() const override {
+    std::string getName() override {
         return wrapped->getName() + " [VFX]";
     }
 
-    int getEstimatedHours() const override {
+    int getEstimatedHours() override {
         return wrapped->getEstimatedHours() + vfxHours;
     }
 
