@@ -6,6 +6,10 @@ WorkGroup::WorkGroup(std::string name)
 {
 }
 
+std::vector<WorkUnit*> WorkGroup::getChildren() const {
+    return children;
+}
+
 WorkGroup::~WorkGroup()
 {
 }

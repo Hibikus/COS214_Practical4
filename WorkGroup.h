@@ -9,7 +9,7 @@ class WorkGroup : public WorkUnit
 {
 private:
     std::vector<WorkUnit*> children;
-
+    std::vector<WorkUnit*> getChildren() const override;
 public:
     WorkGroup(std::string name);
     virtual ~WorkGroup();
