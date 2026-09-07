@@ -2,15 +2,22 @@
 #define WORKUNIT_H
 
 #include <string>
+#include <vector>
 
 class WorkUnitIterator;
-enum class IteratorType;
+enum class IteratorType{
+    DepthFirst,
+    Ready
+};
 
 class WorkUnit
 {
 protected:
     std::string name;
 
+    virtual std::vector<WorkUnit*> getChildren() const { return {}; } //only seen by concrete iterators
+    friend class DepthFirstIterator;
+    friend class ReadyShotIterator;
 public:
     WorkUnit(std::string name);
     virtual ~WorkUnit();
