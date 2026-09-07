@@ -18,6 +18,8 @@ WorkGroup::~WorkGroup()
     {
         delete child;
     }
+WorkGroup::~WorkGroup()
+{
 }
 
 void WorkGroup::add(WorkUnit* unit)
