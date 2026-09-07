@@ -3,13 +3,22 @@
 
 #include <string>
 
-class WorkUnit {
-public:
-    virtual ~WorkUnit() {}
+class WorkUnitIterator;
+enum class IteratorType;
 
-    virtual std::string getName() const = 0;
-    virtual int getEstimatedHours() const = 0;
+class WorkUnit
+{
+protected:
+    std::string name;
+
+public:
+    WorkUnit(std::string name);
+    virtual ~WorkUnit();
+
+    virtual std::string getName() = 0;
+    virtual int getEstimatedHours() = 0;
     virtual void process() = 0;
+    virtual WorkUnitIterator* createIterator(IteratorType type) = 0;
 };
 
 #endif
