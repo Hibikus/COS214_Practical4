@@ -1,8 +1,8 @@
 CXX = g++
-CXXFLAGS = -g --coverage -pthread -Wall
+CXXFLAGS = -std=c++11 -g --coverage -pthread -Wall
 GCOVFLAGS = -f -m -r -j
 
-TARGET = main
+TARGET = taskforge
 DEMO_TARGET = demo
 
 SRCS = $(filter-out DemoMain.cpp, $(wildcard *.cpp))
